@@ -1,0 +1,421 @@
+{  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Request": {
+      "$ref": "#/definitions/Request",
+	  "propertyOrder": 0
+    },
+  
+    "Applicant": { "title": "Информация о заявителе",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "Заявитель",
+            "$ref": "#/definitions/person"
+          },
+          {
+            "title": "Представитель",
+            "$ref": "#/definitions/RepresentativeF"
+          },
+          {
+            "title": "Юридическое лицо",
+            "$ref": "#/definitions/Organization"
+          }
+        ]
+      },
+      "options": {
+        "collapsed": true
+      },
+      "propertyOrder": 1
+    },"Blocks": { 
+         "$ref": "#/definitions/Blocks"
+ 
+}
+
+
+  },
+  "definitions": {
+    "person": {
+      "type": "object",
+      "title": "Person",
+      "multiple": true,
+      "required": [
+        "_localId",
+        "FirstName",
+        "LastName",
+        "Citizenship"
+      ],
+      "properties": {
+        "FirstName": {"title": "Имя",
+          "type": "string"
+        },
+        "LastName": {"title": "Фамилия",
+          "type": "string"
+        },
+        "MiddleName": {"title": "Отчество",
+          "type": "string"
+        },
+        "Sex": { "title": "Пол",
+          "enum": [
+            "Male",
+            "Female"
+          ],
+          "type": "string",
+          "fieldType": "selectlist",
+          "displayType": "select"
+        },
+        "SNILS": { "title": "СНИЛС",
+          "type": "string"
+        },
+        "Citizenship": { "title": "Гражданство",
+          "type": "string"
+        },
+        "PhoneNumber": {"title": "Номер телефона",
+          "type": "string"
+        },
+        "Email": { "title": "Адрес эл.почты",
+          "type": "string"
+        },
+        "Address": { "title": "Адреса",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "Documents": { "title": "Документы",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      }
+    },
+    "RepresentativeF": {
+      "type": "object",
+      "title": "Representative",
+      "multiple": true,
+      "required": [
+        "_localId",
+        "FirstName",
+        "LastName",
+        "Citizenship"
+      ],
+      "properties": {
+        "FirstName": { "title": "Имя",
+          "type": "string"
+        },
+        "LastName": { "title": "Фамилия",
+          "type": "string"
+        },
+        "MiddleName": { "title": "Отчество",
+          "type": "string"
+        },
+        "Sex": { "title": "Пол",
+          "enum": [
+            "Male",
+            "Female"
+          ],
+          "type": "string",
+          "fieldType": "selectlist",
+          "displayType": "select"
+        },
+        "SNILS": { "title": "СНИЛС",
+          "type": "string"
+        },
+        "Citizenship": { "title": "Гражданство",
+          "type": "string"
+        },
+        "PhoneNumber": { "title": "Номер телефона",
+          "type": "string"
+        },
+        "Email": { "title": "Адрес эл. почты",
+          "type": "string"
+        },
+        "PowerOfAttorney": { "title": "Доверенность",
+		
+          "type": "string",
+          "format": "data-url",
+          "title": "Attach"
+        },
+        "AttorneyDate": { "title": "Дата выдачи доверенности",
+          "type": "string",
+          "format": "date"
+        },
+        "NotaryName": { "title": "ФИО Нотариуса",
+          "type": "string"
+        },
+        "Address": { "title": "Адреса",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
+        },
+        "Documents": { "title": "Документы",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      }
+    },
+    "RepresentativeU": {
+      "type": "object",
+      "title": "Representative",
+      "multiple": false,
+      "required": [
+        "_localId",
+        "FirstName",
+        "LastName",
+        "Citizenship"
+      ],
+      "properties": {
+        "FirstName": { "title": "Имя",
+          "type": "string"
+        },
+        "LastName": {"title": "Фамилия",
+          "type": "string"
+        },
+        "MiddleName": {"title": "Отчество",
+          "type": "string"
+        },
+        "PhoneNumber": {"title": "Номер телефона",
+          "type": "string"
+        },
+        "Email": {"title": "Адрес эл.почты",
+          "type": "string"
+        },
+        "PowerOfAttorney": {"title": "Доверенность",
+          "type": "string",
+          "format": "data-url",
+          "title": "Attach"
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      }
+    },
+    "entrepreneur": {
+      "type": "object",
+      "title": "entrepreneur",
+      "multiple": true,
+      "required": [
+        "_localId",
+        "FirstName",
+        "LastName"
+      ],
+      "properties": {
+        "FirstName": { "title": "Имя",
+          "type": "string"
+        },
+        "LastName": { "title": "Фамилия",
+          "type": "string"
+        },
+        "MiddleName": { "title": "Отчество",
+          "type": "string"
+        },
+        "OGRN": { "title": "ОГРН",
+          "type": "string"
+        },
+        "INN": { "title": "ИНН",
+          "type": "string"
+        },
+        "PhoneNumber": { "title": "Номер телефона",
+          "type": "string"
+        },
+        "Email": { "title": "Адрес эл.почты",
+          "type": "string"
+        },
+        "Documents": { "title": "Документы",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      }
+    },
+    "Organization": {
+      "type": "object",
+      "title": "entrepreneur",
+      "multiple": true,
+      "required": [
+        "_localId",
+        "Name"
+      ],
+      "properties": {
+        "Name": { "title": "Наименование юридического лица",
+          "type": "string"
+        },
+        "OGRN": { "title": "ОГРН",
+          "type": "string"
+        },
+        "INN": { "title": "ИНН",
+          "type": "string"
+        },
+        "RepresentativeU": { "title": "Представитель юр.лица",
+          "$ref": "#/definitions/RepresentativeU"
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "name": { "title": "Тип адреса",
+          "type": "string",
+          "enum": [
+            "Адрес регистрации",
+            "Адрес фактический"
+          ]
+        },
+        "properties": { "title": "ОГРН",
+          "type": "object",
+          "properties": {
+            "Address": {"title": "Адрес",
+              "type": "string"
+            },
+            "Area": {"title": "Регион",
+              "type": "string"
+            },
+            "City": {"title": "Город",
+              "type": "string"
+            },
+            "Street": {"title": "Улица",
+              "type": "string"
+            },
+            "House": {"title": "Дом",
+              "type": "string"
+            },
+            "Structure": {"title": "Корпус",
+              "type": "string"
+            },
+            "ApparntmentNumber": {"title": "Квартира",
+              "type": "string"
+            }
+          },
+          "required": [
+            "Address"
+          ]
+        }
+      }
+    },
+    "Document": {
+      "type": "object",
+      "properties": {
+        "DocType": { "title": "Тип документа",
+          "type": "string",
+          "enum": [
+            "Паспорт РФ"
+          ]
+        },
+        "properties": {"title": "",
+          "type": "object",
+          "properties": {
+            "DocSerial": {"title": "Серия",
+              "type": "string"
+            },
+            "DocNumber": {"title": "Номер",
+              "type": "string"
+            },
+            "DocDate": {"title": "Дата выдачи",
+              "type": "string",
+              "format": "date"
+            },
+            "DocIssued": {"title": "Кем выдан",
+              "type": "string"
+            },
+            "CodeOrg": {"title": "Код огранизации",
+              "type": "string"
+            },
+            "DateBeginDoc": {"title": "Дата начала действия",
+              "type": "string",
+              "format": "date"
+            },
+            "DateEndDoc": {"title": "Дата окончания действия",
+              "type": "string",
+              "format": "date"
+            },
+            "ActiveDoc": {"title": "Актуальный",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "DocType",
+            "DocSerial",
+            "DocNumber"
+          ]
+        }
+      }
+    },
+	
+
+	
+    "Request": { 
+      "type": "object",
+      "title": "Наименоение услуги",
+      "required": [
+        "_localId"
+      ],
+      "properties": {
+        "ApplicantType": {"title": "Тип заявителя",
+          "type": "string",
+          "enum": [
+            "Физ.лицо",
+            "Юр.лицо",
+            "кто-то еще"
+          ]
+        },
+        "MunicipalArea": { "title": "Муниципальный район",
+          "type": "string"
+        },
+        "MunicipalStructure": {"title": "Муниципальное образование",
+          "type": "string"
+        },
+        "IsRepresentative": {"title": "Представитель",
+          "type": "boolean"
+        },
+        "_localId": {
+          "type": "string",
+          "options": {
+            "hidden": true
+          },
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      },
+      "definitions": {},
+      "description": "Краткое описание"
+    }
+  },
+  "description": ""
+}
