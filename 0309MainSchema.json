@@ -28,10 +28,7 @@
         "collapsed": true
       },
       "propertyOrder": 1
-    },"Blocks": { 
-         "$ref": "#/definitions/Blocks"
- 
-}
+    }
 
 
   },
