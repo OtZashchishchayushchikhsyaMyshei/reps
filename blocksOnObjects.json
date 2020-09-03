@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "Blocks": {
+      "$ref": "#/definitions/Blocks"
+    },
+    "Blocks2": {
+      "$ref": "#/definitions/Blocks2"
+    },
+	"Blocks3": {
+      "$ref": "#/definitions/Blocks3"
+    },
+	"Blocks4": {
+      "$ref": "#/definitions/Blocks4"
+    },
+	"Blocks5": {
+      "$ref": "#/definitions/Blocks5"
+    }
+  },
+
+"definitions": {
+
+"Blocks": {
+
+          "type": "object",
+          "title": "Информация об испрашиваемом земельном участке",
+          "description": "",
+          "required": [
+            "Ready",
+            "LandCadastralNumber",
+            "QuarterCadastralNumber",
+            "LandCategory",
+			"City",
+			"Square"
+          ],
+          "properties": {
+            "Ready": {"title":"Земельный участок (участки) образован и имеет кадастровый номер?",
+              "type": "boolean"
+            },
+            "LandCadastralNumber": {
+			"$ref": "#/definitions/LandCadastralNumb"
+            },
+            "QuarterCadastralNumber": {
+             "$ref": "#/definitions/QuarterCadastralNumb"
+            },
+            "LandCategory": {"title":"Категория земли", 
+              "type": "string"
+				},
+			"KindOfUse": {"title":"Вид разрешённого использования",
+              "type": "string"
+            },
+            "City": {"title":"Город / Район РТ, РФ",
+              "type": "string"
+            },
+            "Street": {"title":"Улица",
+              "type": "string"
+            },
+            "House": {"title":"Дом",
+              "type": "string"
+				},
+			"Square": {"title":"Площадь земельного участка, кв.м.",
+              "type": "string"
+				}
+			}        
+		
+	},
+	
+"Blocks2": {
+
+          "type": "object",
+          "title": "Документы",
+          "description": "",
+          "properties": {
+            "LandSchema": {"title": "Схема расположения земельного участка",
+              "$ref": "#/definitions/Docs"
+            },
+            "OtherDocs": {     
+          "title": "Прочие документы (множественный ввод)",
+          "type": "array",
+          "items": {"$ref": "#/definitions/Docs"}
+            }
+			       
+		}
+	},
+	
+"Blocks3": {
+          "type": "object",
+          "title": "Подтверждение обработки данных",
+          "description": "",
+          "properties": {
+            "ConfirmData": {"title": "Достоверность сообщенных сведений подтверждаю",
+			"type": "boolean"
+				}
+			}        
+		
+	},
+	
+	
+"Blocks4": {
+          "type": "object",
+          "title": "Способ связи по услуге",
+          "description": "",
+		  "required":["WayOfCommunication"],
+          "properties": {
+            "WayOfCommunication": {"title": "Выберите способ связи по услуге",
+			"type": "string",
+			"enum":[
+			"СМС",
+			"Email",
+			"СМС и Email"
+			]
+				}
+			}        
+		
+	},	
+	
+	
+	"Blocks5": {
+          "type": "object",
+          "title": "Желаемый способ получения результата по услуге",
+          "description": "",
+		  "required":["GetResult"],
+          "properties": {
+            "GetResult": {"title": "Желаемый способ получения результата по услуге",
+			"type": "string"}
+			}        
+		
+	},
+	
+  "LandCadastralNumb": {
+            "type": "array",
+			"minItems": 1,
+            "title": "",
+            "description": "Кадастровый номер участка (участков) (множественный ввод)",
+            "items": {                             
+				"type": "object",
+				"title": "",
+				"description": "",
+				"required":["LandCadastralNumber"],
+			"properties": {
+			"LandCadastralNumber": {
+			"type": "string"
+					}
+				}
+			}   
+		},
+		
+		"QuarterCadastralNumb": {
+            "type": "array",
+			"minItems": 1,
+            "title": "",
+            "description": "Кадастровый номер квартала (множественный ввод)",
+            "items": {                             
+				"type": "object",
+				"title": "",
+				"description": "",
+				"required":["QuarterCadastralNumber"],
+			"properties": {
+			"QuarterCadastralNumber": {
+			"type": "string"
+					}
+				}
+			}   
+		},
+		
+			"Docs": {                            
+				"type": "object",
+				"title": "",
+				"description": "",
+			"properties": {
+			"Docs": {
+			"type": "string",
+			"format": "data-url",
+			"title": "Attach"
+					}
+				}
+			}		
+		
+},
+  "description": ""
+
+}
